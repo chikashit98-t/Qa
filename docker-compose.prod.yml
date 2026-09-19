@@ -1,0 +1,59 @@
+# 本番用: docker compose -f docker-compose.prod.yml --env-file .env up -d --build
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      APP_URL: "https://${DOMAIN:?DOMAINを.envに設定してください}"
+      DB_DSN: "mysql:host=db;dbname=happimo;charset=utf8mb4"
+      DB_USER: happimo
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORDを.envに設定してください}
+      MAIL_DRIVER: smtp
+      MAIL_HOST: ${MAIL_HOST:?}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_ENCRYPTION: ${MAIL_ENCRYPTION:-tls}
+      MAIL_USER: ${MAIL_USER:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_FROM: ${MAIL_FROM:?}
+    volumes:
+      - appstorage:/var/www/html/storage
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [internal]
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+    environment:
+      MYSQL_DATABASE: happimo
+      MYSQL_USER: happimo
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?DB_ROOT_PASSWORDを.envに設定してください}
+    volumes:
+      - dbdata:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$$MYSQL_ROOT_PASSWORD"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks: [internal]
+
+  # Cloudflare Tunnel: 外向き接続のみ。80/443は公開しない。
+  # Cloudflare ZeroTrustの「Public Hostname」で https://<DOMAIN> → http://web:80 を設定しておく。
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?TUNNEL_TOKENを.envに設定してください}
+    depends_on: [web]
+    networks: [internal]
+
+networks:
+  internal:
+
+volumes:
+  dbdata:
+  appstorage:

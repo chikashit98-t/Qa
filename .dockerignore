@@ -1,0 +1,9 @@
+.git
+storage/*
+!storage/.gitkeep
+tests
+docs
+deploy
+.env
+*.png
+node_modules
