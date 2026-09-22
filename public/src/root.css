@@ -281,18 +281,123 @@ header > input[type="button"] {
 
 /* home */
 
-.home-subtitle {
-  color: var(--text-black);
-  background-color: var(--primary-secondary);
-  padding: 8px;
-  text-align: center;
+.home-page {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
 }
-.home-description {
+
+.home-hero {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  color: var(--text-black);
-  padding: 8px;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 8px 0 20px;
+}
+.home-eyebrow {
+  display: inline-block;
+  color: var(--primary-color);
+  background-color: var(--primary-secondary);
+  font-weight: var(--font-bold);
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+.home-tagline {
+  line-height: 1.6;
+}
+.home-hero > input.big-button {
+  margin-top: 4px;
+}
+.home-hero-note {
+  color: var(--primary-disabled);
+}
+
+.home-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--header-bg-color);
+}
+.home-section-title {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 8px;
+}
+
+/* 使い方 */
+
+.home-steps {
+  display: flex;
+  flex-direction: column;
+}
+.home-step {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  position: relative;
+}
+.home-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 48px;
+  width: 2px;
+  height: calc(100% - 32px);
+  background-color: var(--primary-secondary);
+}
+.home-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: var(--primary-color);
+  color: var(--text-white);
+  z-index: 1;
+}
+.home-step-icon > svg {
+  width: 20px;
+  height: 20px;
+}
+.home-step-title {
+  font-weight: var(--font-bold);
+}
+
+/* いいところ */
+
+.home-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.home-benefit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 16px;
+  background-color: var(--primary-secondary);
+}
+.home-benefit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background-color: var(--bg-color);
+  color: var(--primary-color);
+}
+.home-benefit-icon > svg {
+  width: 20px;
+  height: 20px;
+}
+.home-benefit-title {
+  font-weight: var(--font-bold);
 }
 .form-group {
   display: flex;
