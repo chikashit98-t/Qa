@@ -1,8 +1,9 @@
 <main>
     <div class="create-box-title">
-        <h1>質問箱作成</h1>
+        <h1>あと少しで公開です</h1>
         <p>2/2</p>
     </div>
+    <p class="main-text create-box-lead">最後にログイン情報を決めれば、あなたの質問箱がすぐに動き出します。</p>
     <button type="button" class="main-button rounded inner-shadow main-text"
         onclick="location.href='/box/create'">戻る</button>
     <form action="/box/create" method="post" data-validate><!--TODO action、method変更 -->
@@ -53,6 +54,7 @@
                 data-required data-invalid-char data-validate-on>
             <p class="form-error-message info-text"></p>
         </div>
+        <p class="sub-text create-box-lead">送信すると確認メールが届きます。コードを入力すれば、質問箱が誕生します！</p>
         <input type="submit" value="作成" class="big-button rounded box-shadow">
 
     </form>

@@ -1,8 +1,9 @@
 <main>
     <div class="create-box-title">
-        <h1>質問箱作成</h1>
+        <h1>あなただけの質問箱をつくろう</h1>
         <p>1/2</p>
     </div>
+    <p class="main-text create-box-lead">タイトルを決めたら、もうワクワクは始まっています。<br>みんなからの質問が届く場所を、あなたの名前で作りましょう。</p>
     <form method="get" action="/box/create/confirm" data-validate data-only-validate="next" id="createBox">
         <!--TODO action、method変更 -->
         <div class="form-group">
@@ -15,7 +16,7 @@
 
             </label>
             <input type="text" id="boxTitle" name="boxTitle" class="form-input rounded box-shadow border input-text"
-                data-required data-min-length="8" data-max-length="20" data-validate-on>
+                data-required data-min-length="8" data-max-length="20" data-validate-on placeholder="例：なんでも聞いて！">
             <p class="form-error-message sub-text"></p>
         </div>
         <div class="form-group">
@@ -44,6 +45,37 @@
             <button type="submit" value="next" class="main-button-primary rounded box-shadow">次へ</button>
         </div>
     </form>
+    <p class="sub-text box-preview-label">できあがりイメージ</p>
+    <div class="subtitle-text box-subtitle" id="previewTitle">あなたの質問箱</div>
+    <div class="box-view">
+        <div class="box-card-list">
+            <div class="card rounded box-shadow" data-card="view" show>
+                <div class="question rounded box-shadow" tabindex="0" role="button" aria-expanded="false">
+                    <div class="card-main">
+                        <p class="card-label inner-shadow">Q</p>
+                        <div>
+                            <p class="card-top"><span class="subtitle-text">はじめまして！</span><span
+                                    class="card-infos info-text">
+                                    <span>回答済み</span>-<span>今</span></span></p>
+                            <p class="main-text font-regular">これから、みんなからの質問がここに届きます。</p>
+                        </div>
+                    </div>
+                    <img src="/src/img/down.svg" alt="down arrow">
+                </div>
+                <div class="answer rounded">
+                    <div class="card-main answer-card">
+                        <p class="card-label box-shadow">A</p>
+                        <div>
+                            <p class="card-top"><span class="subtitle-text">ようこそ！</span><span
+                                    class="card-infos info-text">
+                                    <span>今</span></span></p>
+                            <p class="main-text font-regular">答えるたびに、ちょっとした幸せが増えていきます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
 <script>
     const titleInput = document.getElementById("boxTitle");
@@ -53,12 +85,17 @@
     box_id_input.addEventListener(("input"), () => {
         box_id_output.innerText = box_id_input.value;
     })
+    const previewTitle = document.getElementById('previewTitle');
+    titleInput.addEventListener('input', () => {
+        previewTitle.textContent = titleInput.value || 'あなたの質問箱';
+    });
     const boxTitle = sessionStorage.getItem('create.boxTitle') ?? "";
     const boxID = sessionStorage.getItem('create.boxID') ?? "";
     const boxTitleInput = document.getElementById('boxTitle')
     const boxIDInput = document.getElementById('boxID')
     boxTitleInput.value = boxTitle
     boxIDInput.value = boxID
+    previewTitle.textContent = boxTitle || 'あなたの質問箱';
 
     const form = document.getElementById('createBox');
     form.addEventListener('submit', (event) => {

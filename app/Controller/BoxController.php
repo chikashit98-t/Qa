@@ -18,12 +18,12 @@ final class BoxController
 
     public static function showCreateForm(Request $req, array $args): Response
     {
-        return Response::html(View::page('box_create', ['title' => '質問箱作成 1/2']));
+        return Response::html(View::page('box_create', ['title' => '質問箱をつくろう 1/2']));
     }
 
     public static function showCreateConfirmForm(Request $req, array $args): Response
     {
-        return Response::html(View::page('box_create_confirm', ['title' => '質問箱作成 2/2']));
+        return Response::html(View::page('box_create_confirm', ['title' => '質問箱をつくろう 2/2']));
     }
 
     public static function showCreateEmailConfirmForm(Request $req, array $args): Response

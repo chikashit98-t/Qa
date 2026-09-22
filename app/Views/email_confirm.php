@@ -1,5 +1,6 @@
 <main>
     <h1>メールアドレス確認</h1>
+    <p class="main-text create-box-lead">送信したメールに届いた確認コードを入力すれば、あなたの質問箱がついに完成です。</p>
     <form action="<?= e($action) ?>" method="post" data-validate id="confirmForm">
         <input type="hidden" name="token" value="<?= e($token) ?>">
         <div class="form-group">

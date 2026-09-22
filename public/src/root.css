@@ -331,6 +331,14 @@ header > input[type="button"] {
   display: flex;
   justify-content: space-between;
 }
+.create-box-lead {
+  text-align: center;
+  line-height: 1.6;
+}
+.box-preview-label {
+  text-align: center;
+  margin-top: 16px;
+}
 
 /* box */
 
