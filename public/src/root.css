@@ -210,7 +210,11 @@ main {
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  margin: var(--main-margin-y) var(--main-margin-x);
+  /* overflow-y:autoにしないと、内容がボックスの高さを超えて溢れた時に下端のpaddingが効かない */
+  overflow-y: auto;
+  margin: 0 var(--main-margin-x);
+  padding: var(--main-margin-y) 0;
+  box-sizing: border-box;
   gap: var(--main-gap);
 }
 form {
