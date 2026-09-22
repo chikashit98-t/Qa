@@ -14,7 +14,7 @@
             </label>
             <input type="text" id="confirmCode" name="confirmCode"
                 class="form-input rounded box-shadow border input-text" maxlength="8" data-required
-                data-char-length="8" data-invalid-char data-validate-on>
+                data-char-length="8" data-invalid-char data-validate-on placeholder="例：a1b2c3d4">
             <p class="form-error-message info-text"></p>
         </div>
         <div class="create-box-btns">

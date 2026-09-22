@@ -31,7 +31,7 @@
             </label>
             <input type="text" id="boxID" name="boxID"
                 class="form-input rounded box-shadow border input-text" data-min-length="10" data-max-length="50" data-required
-                data-invalid-char data-validate-on>
+                data-invalid-char data-validate-on placeholder="例：nandemo-kiite-2026">
             <p class="main-text"><?= e(App\Cores\Request::baseUrl()) ?>/b/<span id="box_id"></span></p>
             <p class="form-error-message sub-text">
                 <span data-validate-nodelete>* ログインIDも兼ねる</span>

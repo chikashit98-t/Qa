@@ -21,7 +21,8 @@
             </label>
             <label class="password-input"><input type="password" id="password" name="password"
                     autocomplete="current-password" data-required data-invalid-char data-min-length="8"
-                    data-validate-on class="form-input input-text  rounded box-shadow border "><img
+                    data-validate-on class="form-input input-text  rounded box-shadow border "
+                    placeholder="8文字以上の半角英数字"><img
                     src="/src/img/visibilityoff.svg" alt="visible"></label>
             <p class="form-error-message sub-text">
                 <span data-validate-nodelete data-code="password.invalidChar">* 半角英数字、記号</span>
@@ -37,8 +38,8 @@
             </label>
             <label class="password-input"><input type="password" id="passwordConfirm" name="confirm"
                     autocomplete="current-password" data-required data-validate-on
-                    class="form-input input-text  rounded box-shadow border "><img src="/src/img/visibilityoff.svg"
-                    alt="visible"></label>
+                    class="form-input input-text  rounded box-shadow border " placeholder="もう一度入力してください"><img
+                    src="/src/img/visibilityoff.svg" alt="visible"></label>
             <p class="form-error-message info-text"></p>
         </div>
         <div class="form-group">
@@ -51,7 +52,7 @@
 
             </label>
             <input type="email" id="email" name="email" class="form-input rounded box-shadow border input-text"
-                data-required data-invalid-char data-validate-on>
+                data-required data-invalid-char data-validate-on placeholder="例：you@example.com">
             <p class="form-error-message info-text"></p>
         </div>
         <p class="sub-text create-box-lead">送信すると確認メールが届きます。コードを入力すれば、質問箱が誕生します！</p>
