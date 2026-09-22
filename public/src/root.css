@@ -318,6 +318,17 @@ header > input[type="button"] {
   height: var(--main-button-height);
   border-radius: var(--border-radius);
 }
+.header-login-button {
+  /* ページ本来のCTAより主張しすぎないよう、枠線・影のないゴースト形式にする */
+  width: fit-content;
+  background-color: transparent;
+  color: var(--primary-color);
+  border: none;
+  font-weight: var(--font-bold);
+}
+.header-login-button:hover {
+  background-color: var(--primary-secondary);
+}
 
 .big-button {
   display: flex;

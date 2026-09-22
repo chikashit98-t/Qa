@@ -19,8 +19,7 @@
 
     <header>
         <a href="/"><img src="/src/img/logo.svg" alt="happimo" class="logo"></a>
-        <input type="button" value="管理者ログイン" onclick="location.href='/login'"
-            class="main-button rounded inner-shadow">
+        <input type="button" value="管理者ログイン" onclick="location.href='/login'" class="header-login-button">
     </header>
     <?= $content ?>
     <dialog id="popup" class="popup rounded border box-shadow">
