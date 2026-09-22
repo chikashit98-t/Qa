@@ -87,7 +87,7 @@ check('boxID with ":" or ";" rejected', $r['status'] === 422 && isset($r['json']
 // --- 作成 ---
 $body = ['boxTitle' => 'テスト質問箱タイトル', 'boxID' => $boxId, 'password' => 'password1', 'confirm' => 'password1', 'email' => $email];
 $r = req('POST', '/box/create', $body);
-check('create redirects to email-confirm', $r['status'] === 303 && $r['location'] === '/box/create/email-confirm');
+check('create sends mail json', $r['status'] === 200 && $r['json']['type'] === 'sent' && $r['json']['redirect'] === '/box/create/email-confirm');
 check('confirm page 200', req('GET', '/box/create/email-confirm')['status'] === 200);
 $mail = lastMail($email);
 preg_match('/確認コード: (\w{8})/', $mail, $m);

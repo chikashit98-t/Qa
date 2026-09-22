@@ -18,7 +18,9 @@ final class Db
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ];
             // MySQLは値が変わらないUPDATEのrowCountを0にするため、一致した行数を返させる
-            if (defined('PDO::MYSQL_ATTR_FOUND_ROWS')) {
+            if (class_exists('Pdo\\Mysql') && defined('Pdo\\Mysql::ATTR_FOUND_ROWS')) {
+                $options[\Pdo\Mysql::ATTR_FOUND_ROWS] = true;
+            } elseif (defined('PDO::MYSQL_ATTR_FOUND_ROWS')) {
                 $options[PDO::MYSQL_ATTR_FOUND_ROWS] = true;
             }
             $pdo = null;

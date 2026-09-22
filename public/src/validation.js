@@ -270,7 +270,10 @@ document.querySelectorAll("form[data-validate]").forEach((form) => {
         showErrors(form, fieldErrors);
         return;
       }
-      if (result.data.type === "setting") {
+      if (result.data.type === "sent") {
+        await showPopup("message", "送信完了", "確認コードをメールで送信しました。メールをご確認ください。", "OK");
+        if (result.data.redirect) location.href = result.data.redirect;
+      } else if (result.data.type === "setting") {
         await showPopup("message", "保存しました", "設定を保存しました。", "閉じる");
         form.closest("dialog")?.close("save");
         location.reload();

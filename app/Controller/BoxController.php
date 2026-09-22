@@ -103,9 +103,9 @@ final class BoxController
         ], self::CREATE_TTL, true);
         Auth::start();
         $_SESSION['create_token'] = $issued['token'];
-        self::mailCode($email, $issued['code']);
+        self::mailCode($email, $issued['code'], $boxTitle, $boxID);
 
-        return Response::redirect('/box/create/email-confirm');
+        return Response::json(['type' => 'sent', 'redirect' => '/box/create/email-confirm']);
     }
 
     public static function confirmEmail(Request $req, array $args): Response
@@ -144,12 +144,18 @@ final class BoxController
         $token = $_SESSION['create_token'] ?? '';
         $row = Token::find($token, 'box_create');
         if (!$row) return Response::tokenError();
-        self::mailCode($row['payload']['email'], Token::resetCode($token, self::CREATE_TTL));
+        $p = $row['payload'];
+        self::mailCode($p['email'], Token::resetCode($token, self::CREATE_TTL), $p['title'], $p['boxID']);
         return Response::json(['type' => 'resent']);
     }
 
-    public static function mailCode(string $to, string $code): void
+    public static function mailCode(string $to, string $code, string $boxTitle, string $boxID): void
     {
-        Mailer::send($to, '【happimo】メールアドレスの確認コード', "確認コード: {$code}\n\n30分以内に入力してください。心当たりがない場合はこのメールを破棄してください。");
+        $url = Request::baseUrl() . '/b/' . rawurlencode($boxID);
+        $body = "確認コード: {$code}\n\n" .
+            "質問箱「{$boxTitle}」の作成手続きです。\n" .
+            "URL: {$url}\n\n" .
+            "30分以内に入力してください。心当たりがない場合はこのメールを破棄してください。";
+        Mailer::send($to, '【happimo】メールアドレスの確認コード', $body);
     }
 }
