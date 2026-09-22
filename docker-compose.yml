@@ -3,8 +3,10 @@ services:
     build: .
     volumes:
       - ./:/var/www/html
+      - ./docker/certs:/etc/apache2/ssl:ro
     ports:
       - "8080:80"
+      - "8443:443"
     environment:
       DB_DSN: "mysql:host=db;dbname=happimo;charset=utf8mb4"
       DB_USER: happimo

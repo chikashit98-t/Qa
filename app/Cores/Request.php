@@ -33,8 +33,16 @@ final class Request
     public static function isHttps(): bool
     {
         if (str_starts_with((string) env('APP_URL'), 'https://')) return true;
-        return (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-            || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https';
+        return self::isActuallyHttps();
+    }
+
+    /** APP_URLの設定に関わらず、実際のリクエストがhttpsで届いたかを判定する（本番でのhttps強制チェック用） */
+    public static function isActuallyHttps(): bool
+    {
+        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') return true;
+        if (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https') return true;
+        // Cloudflare Tunnel経由の場合、CF-Visitorヘッダーにクライアントの実際のスキームが入る
+        return str_contains((string) ($_SERVER['HTTP_CF_VISITOR'] ?? ''), '"scheme":"https"');
     }
 
     /** メール内リンク用のベースURL。APP_URL未設定ならリクエストのホストから組み立てる */
