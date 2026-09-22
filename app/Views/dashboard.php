@@ -13,7 +13,20 @@ $dashboardUrl = App\Cores\Request::baseUrl() . '/dashboard/' . $dashboard_id;
             onclick="window.open('/b/<?= e(rawurlencode($box['box_id'])) ?>', '_blank', 'noopener')">
         <input type="button" value="設定" id="setting" class="box-shadow main-button-primary rounded">
     </div>
-    <div class="subtitle-text box-subtitle"><?= e($box['title']) ?></div>
+    <div class="box-header">
+        <span class="box-header-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <rect x="6" y="4" width="12" height="16" rx="2" />
+                <path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1" />
+                <path d="M9 10h6M9 14h6M9 18h3" />
+            </svg>
+        </span>
+        <div>
+            <p class="subtitle-text box-subtitle"><?= e($box['title']) ?></p>
+            <p class="sub-text box-header-note">管理者ダッシュボード</p>
+        </div>
+    </div>
     <div class="box-body">
         <div class="list-control">
             <p class="list-search"><img src="/src/img/search.svg" alt="search"><input type="text"
@@ -148,7 +161,16 @@ $dashboardUrl = App\Cores\Request::baseUrl() . '/dashboard/' . $dashboard_id;
                     </form>
                 <?php endforeach; ?>
                 <?php if (!$questions): ?>
-                    <p class="main-text" id="emptyMessage">まだ質問はありません。</p>
+                    <div class="box-empty" id="emptyMessage">
+                        <span class="box-empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+                            </svg>
+                        </span>
+                        <p class="main-text">まだ質問はありません</p>
+                        <p class="sub-text">質問箱のURLを共有すると、ここに届きます</p>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -224,20 +246,23 @@ $dashboardUrl = App\Cores\Request::baseUrl() . '/dashboard/' . $dashboard_id;
                     * 10文字以上</span>
             </p>
         </div>
-        <div class="form-group">
-            <label class="form-label">
-                <div class="form-label-container">
-                    <p class="main-text">管理者の引き継ぎ</p>
-                </div>
-            </label>
-            <button type="button" id="transferAdmin" name="transferAdmin" value="transferAdmin"
-                class="main-button-primary  rounded box-shadow border">次の管理者に引き継ぐ</button>
-        </div>
-        <div class="form-group">
+        <div class="settings-danger-zone">
+            <p class="sub-text settings-danger-label">アカウント操作</p>
+            <div class="form-group">
+                <label class="form-label">
+                    <div class="form-label-container">
+                        <p class="main-text">管理者の引き継ぎ</p>
+                    </div>
+                </label>
+                <button type="button" id="transferAdmin" name="transferAdmin" value="transferAdmin"
+                    class="main-button-primary  rounded box-shadow border">次の管理者に引き継ぐ</button>
+            </div>
+            <div class="form-group">
 
-            <button type="button" id="logout" name="logout" value="logout"
-                class="main-button-danger  rounded box-shadow border">ログアウト</button>
+                <button type="button" id="logout" name="logout" value="logout"
+                    class="main-button-danger  rounded box-shadow border">ログアウト</button>
 
+            </div>
         </div>
         <div>
             <button type="button" class="popup-sub main-button rounded inner-shadow" value="close" id="closeSetting">閉じる</button>

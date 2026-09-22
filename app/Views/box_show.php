@@ -6,7 +6,18 @@
 $askUrl = '/b/' . rawurlencode($box['box_id']) . '/questions/create';
 ?>
 <main class="box-main">
-    <div class="subtitle-text box-subtitle"><?= e($box['title']) ?></div>
+    <div class="box-header">
+        <span class="box-header-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+            </svg>
+        </span>
+        <div>
+            <p class="subtitle-text box-subtitle"><?= e($box['title']) ?></p>
+            <p class="sub-text box-header-note">匿名で質問できます</p>
+        </div>
+    </div>
     <div class="box-body">
         <div class="list-control">
             <p class="list-search"><img src="/src/img/search.svg" alt="search"><input type="text"
@@ -82,7 +93,16 @@ $askUrl = '/b/' . rawurlencode($box['box_id']) . '/questions/create';
                     </div>
                 <?php endforeach; ?>
                 <?php if (!$questions): ?>
-                    <p class="main-text" id="emptyMessage">まだ公開されている質問はありません。</p>
+                    <div class="box-empty" id="emptyMessage">
+                        <span class="box-empty-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+                            </svg>
+                        </span>
+                        <p class="main-text">まだ質問がありません</p>
+                        <p class="sub-text">最初の質問を送ってみませんか？</p>
+                    </div>
                 <?php endif; ?>
             </div>
             <input type="button" value="質問" class="big-button rounded box-shadow main-create-question-button"
