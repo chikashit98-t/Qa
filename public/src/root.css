@@ -210,12 +210,18 @@ main {
   flex-direction: column;
   flex: 1;
   min-height: 0;
-  /* overflow-y:autoにしないと、内容がボックスの高さを超えて溢れた時に下端のpaddingが効かない */
-  overflow-y: auto;
-  margin: 0 var(--main-margin-x);
-  padding: var(--main-margin-y) 0;
-  box-sizing: border-box;
+  margin: var(--main-margin-y) var(--main-margin-x);
   gap: var(--main-gap);
+}
+/* 通常の縦長ページ（ホーム等）用。box/dashboardのようにヘッダー固定＋
+   内部スクロール（.box-view側）にしたい画面ではこのクラスを付けない。 */
+body:has(> main.page-scroll) {
+  height: auto;
+  min-height: 100dvh;
+}
+main.page-scroll {
+  flex: none;
+  min-height: auto;
 }
 form {
   display: flex;

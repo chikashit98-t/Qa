@@ -1,4 +1,4 @@
-<main>
+<main class="page-scroll">
     <div class="home-hero">
         <p class="sub-text home-eyebrow">匿名の質問箱サービス</p>
         <h1 class="title-text">匿名だから、本音が届く。</h1>
