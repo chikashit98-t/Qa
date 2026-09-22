@@ -237,16 +237,22 @@ main.page-scroll {
   color: var(--primary-color);
   font-weight: var(--font-bold);
 }
-.qc-safe-note {
+.notice {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--primary-color);
-  background-color: var(--primary-secondary);
   padding: 8px 12px;
   border-radius: var(--border-radius);
 }
-.qc-safe-icon {
+.notice-info {
+  color: var(--primary-color);
+  background-color: var(--primary-secondary);
+}
+.notice-warn {
+  color: var(--primary-red);
+  background-color: rgba(191, 64, 64, 0.12);
+}
+.notice-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -254,7 +260,7 @@ main.page-scroll {
   width: 20px;
   height: 20px;
 }
-.qc-safe-icon > svg {
+.notice-icon > svg {
   width: 16px;
   height: 16px;
 }
@@ -540,6 +546,26 @@ header > input[type="button"] {
 .box-empty-icon > svg {
   width: 22px;
   height: 22px;
+}
+.state-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding-top: 24px;
+}
+.state-page > .box-empty-icon {
+  width: 56px;
+  height: 56px;
+}
+.state-page > .box-empty-icon > svg {
+  width: 26px;
+  height: 26px;
+}
+.state-page > input.big-button {
+  width: 100%;
+  max-width: 320px;
 }
 .box-body {
   display: flex;

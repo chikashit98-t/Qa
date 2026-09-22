@@ -5,8 +5,8 @@
         <h1 class="title-text">質問する</h1>
         <p class="sub-text">「<?= e($box['title']) ?>」への質問です</p>
     </div>
-    <p class="sub-text qc-safe-note">
-        <span class="qc-safe-icon" aria-hidden="true">
+    <p class="sub-text notice notice-info">
+        <span class="notice-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
                 stroke-linejoin="round">
                 <rect x="5" y="11" width="14" height="9" rx="2" />
